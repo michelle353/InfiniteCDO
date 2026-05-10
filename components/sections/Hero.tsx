@@ -112,31 +112,31 @@ export default function Hero() {
             variants={fadeUp}
             className="mb-8 flex justify-center"
           >
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-md border border-brand-lavenderMid text-brand-deepPurple text-sm font-medium shadow-sm">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-brand-plum/15 text-brand-plum text-sm font-semibold shadow-md">
               <span className="relative flex h-2 w-2">
                 {!reduceMotion && (
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-deepPurple opacity-75" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-plum opacity-75" />
                 )}
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-deepPurple" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-plum" />
               </span>
               Fractional Chief Digital, Data &amp; AI Officer
             </span>
           </motion.div>
 
-          {/* Headline */}
+          {/* Headline — solid plum for max contrast against the lavender smoke.
+              The deeper hue reads as elegant and executive, and never blends
+              with whatever wisp drifts behind it. */}
           <motion.h1
             custom={1}
             initial="hidden"
             animate="show"
             variants={fadeUp}
-            className="text-5xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-bold text-brand-nearBlack leading-[1.05] tracking-tight"
+            className="text-5xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-bold text-brand-plum leading-[1.05] tracking-tight [text-shadow:0_1px_2px_rgba(255,255,255,0.6)]"
           >
             Infinite Potential.
             <br />
             <span className="relative inline-block mt-2">
-              <span className="bg-gradient-to-r from-brand-deepPurple via-brand-plumLight to-brand-deepPurple bg-clip-text text-transparent">
-                Infinite Possibilities.
-              </span>
+              <span className="text-brand-plum">Infinite Possibilities.</span>
               <svg
                 className="absolute -bottom-3 left-0 w-full h-3"
                 viewBox="0 0 400 12"
@@ -154,18 +154,19 @@ export default function Hero() {
             </span>
           </motion.h1>
 
-          {/* Subheading */}
+          {/* Subheading — full plum, no opacity dimming */}
           <motion.p
             custom={2}
             initial="hidden"
             animate="show"
             variants={fadeUp}
-            className="mt-8 text-xl lg:text-2xl text-brand-nearBlack/70 leading-relaxed max-w-2xl mx-auto font-light"
+            className="mt-8 text-xl lg:text-2xl text-brand-plum/85 leading-relaxed max-w-2xl mx-auto font-medium [text-shadow:0_1px_2px_rgba(255,255,255,0.5)]"
           >
             Enterprise-grade digital, data &amp; AI leadership for businesses and nonprofits — without the cost of a full-time executive.
           </motion.p>
 
-          {/* CTAs */}
+          {/* CTAs — primary in dark plum so it doesn't disappear into purple
+              smoke; secondary in solid white with plum text for crisp contrast */}
           <motion.div
             custom={3}
             initial="hidden"
@@ -175,7 +176,7 @@ export default function Hero() {
           >
             <a
               href="/contact"
-              className="group inline-flex items-center gap-2 px-7 py-4 bg-brand-deepPurple text-white font-semibold rounded-xl hover:bg-brand-deepPurpleHover hover:shadow-glow-purple transition-all duration-300 active:scale-[0.98]"
+              className="group inline-flex items-center gap-2 px-7 py-4 bg-brand-plum text-white font-semibold rounded-xl hover:bg-brand-plumLight shadow-lg shadow-brand-plum/20 hover:shadow-xl hover:shadow-brand-plum/30 transition-all duration-300 active:scale-[0.98] ring-1 ring-brand-plum/20"
             >
               Book a Free Assessment
               <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
@@ -184,7 +185,7 @@ export default function Hero() {
             </a>
             <a
               href="/services"
-              className="inline-flex items-center gap-2 px-7 py-4 bg-white/85 backdrop-blur-md text-brand-plum font-semibold rounded-xl border border-brand-lavenderMid hover:bg-white hover:border-brand-lavender hover:shadow-md transition-all duration-300"
+              className="inline-flex items-center gap-2 px-7 py-4 bg-white text-brand-plum font-semibold rounded-xl border border-brand-plum/20 hover:border-brand-plum/40 shadow-md hover:shadow-lg transition-all duration-300"
             >
               Explore Services
             </a>
@@ -196,7 +197,7 @@ export default function Hero() {
             initial="hidden"
             animate="show"
             variants={fadeUp}
-            className="mt-16 pt-10 border-t border-brand-lavenderMid/60 flex flex-wrap items-center gap-x-8 gap-y-3 justify-center"
+            className="mt-16 pt-10 border-t border-brand-plum/15 flex flex-wrap items-center gap-x-8 gap-y-3 justify-center"
           >
             {[
               "25+ Years Experience",
@@ -204,10 +205,10 @@ export default function Hero() {
               "300+ Team Members Led",
             ].map((item) => (
               <div key={item} className="flex items-center gap-2 text-brand-plum">
-                <svg className="w-4 h-4 text-brand-deepPurple flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                <svg className="w-4 h-4 text-brand-plum flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                   <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
                 </svg>
-                <span className="text-sm font-medium">{item}</span>
+                <span className="text-sm font-semibold">{item}</span>
               </div>
             ))}
           </motion.div>
