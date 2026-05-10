@@ -40,12 +40,15 @@ void main(){
   float n3=fbm(uv*1.006+vec2(0,T*.015)+n+.006);
   float density=(n1+n2+n3)/3.;
 
-  // Boost contrast a little so dense regions read clearly as purple
-  // without making sparse regions anything other than pure white.
-  density=clamp(density*1.15,0.,1.);
+  // ─ White-dominant tuning ───────────────────────────────────────
+  // pow() pushes most of the canvas toward 0 (pure white) so only
+  // the densest noise peaks register as purple — wisps read as
+  // accents, not the dominant tone. The 0.55 cap means even the
+  // strongest wisp blends 45% white in, keeping the look airy.
+  density=clamp(density,0.,1.);
+  density=pow(density, 2.2) * 0.55;
 
-  // White base → blend toward u_color where smoke is dense.
-  // Sparse regions stay exactly vec3(1.0) — no gray anywhere.
+  // White base → soft blend toward u_color where smoke is dense.
   vec3 col=mix(vec3(1.0), u_color, density);
 
   O=vec4(col,1);
