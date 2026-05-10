@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import AmbientBackground from "@/components/ui/ambient-background";
+import { SmokeBackground } from "@/components/ui/spooky-smoke-animation";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -20,11 +20,66 @@ export default function Hero() {
       className="relative overflow-hidden bg-white min-h-[92vh] lg:min-h-screen flex items-center"
       aria-label="Hero"
     >
-      {/* Premium ambient background — soft lavender glow, drifting orbs,
-          faint dot grid, edge fade to white. Sits behind all content. */}
-      <AmbientBackground />
+      {/*
+        === BACKGROUND LAYER STACK ===
 
-      {/* Floating geometric accents — purely decorative, motion-safe */}
+        The smoke shader renders dark wisps by design — `clamp(col, .08, 1.0)`
+        floors at dark gray. On a bright, airy brand site that needs to be
+        staged carefully so it reads as atmospheric purple haze, not as a
+        spooky/cyberpunk effect.
+
+        Layer order (back → front):
+          1. SmokeBackground   - tinted to brand deepPurple, low opacity
+          2. Soft white mask   - center radial, lifts the middle so dark
+                                 smoke doesn't sit under hero text
+          3. Top + bottom fade - white gradients for clean section transitions
+          4. Dot grid          - faint brand-purple texture overlay
+          5. Decorative orbs   - 3 floating shapes (motion-safe)
+      */}
+
+      {/* Layer 1: smoke shader, brand-tinted, soft */}
+      <div className="absolute inset-0 opacity-[0.55] pointer-events-none" aria-hidden="true">
+        <SmokeBackground smokeColor="#5B3FD6" />
+      </div>
+
+      {/* Layer 2: soft white center mask for typography readability */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 65% 55% at 50% 45%, rgba(255,255,255,0.65) 0%, rgba(255,255,255,0.25) 45%, transparent 75%)",
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Layer 3a: top fade-to-white (under navbar) */}
+      <div
+        className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-white via-white/75 to-transparent pointer-events-none"
+        aria-hidden="true"
+      />
+
+      {/* Layer 3b: bottom fade-to-white (into next section) */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-white via-white/85 to-transparent pointer-events-none z-[1]"
+        aria-hidden="true"
+      />
+
+      {/* Layer 4: faint dot grid (brand purple), masked to center */}
+      <div
+        className="absolute inset-0 opacity-[0.14] pointer-events-none"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, hsl(250 67% 54% / 0.6) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+          maskImage:
+            "radial-gradient(ellipse 70% 55% at 50% 50%, black 35%, transparent 78%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 70% 55% at 50% 50%, black 35%, transparent 78%)",
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Layer 5: floating geometric accents (motion-safe) */}
       {!reduceMotion && (
         <>
           <motion.div
@@ -48,7 +103,7 @@ export default function Hero() {
         </>
       )}
 
-      {/* Content layer */}
+      {/* === CONTENT === */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 lg:py-36 pt-32 lg:pt-40 w-full">
         <div className="max-w-4xl mx-auto text-center">
           {/* Eyebrow pill */}
@@ -59,7 +114,7 @@ export default function Hero() {
             variants={fadeUp}
             className="mb-8 flex justify-center"
           >
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 backdrop-blur-md border border-brand-lavenderMid text-brand-deepPurple text-sm font-medium shadow-sm">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-md border border-brand-lavenderMid text-brand-deepPurple text-sm font-medium shadow-sm">
               <span className="relative flex h-2 w-2">
                 {!reduceMotion && (
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-deepPurple opacity-75" />
@@ -107,7 +162,7 @@ export default function Hero() {
             initial="hidden"
             animate="show"
             variants={fadeUp}
-            className="mt-8 text-xl lg:text-2xl text-brand-nearBlack/65 leading-relaxed max-w-2xl mx-auto font-light"
+            className="mt-8 text-xl lg:text-2xl text-brand-nearBlack/70 leading-relaxed max-w-2xl mx-auto font-light"
           >
             Enterprise-grade digital, data &amp; AI leadership for businesses and nonprofits — without the cost of a full-time executive.
           </motion.p>
@@ -131,7 +186,7 @@ export default function Hero() {
             </a>
             <a
               href="/services"
-              className="inline-flex items-center gap-2 px-7 py-4 bg-white/80 backdrop-blur-md text-brand-plum font-semibold rounded-xl border border-brand-lavenderMid hover:bg-white hover:border-brand-lavender hover:shadow-md transition-all duration-300"
+              className="inline-flex items-center gap-2 px-7 py-4 bg-white/85 backdrop-blur-md text-brand-plum font-semibold rounded-xl border border-brand-lavenderMid hover:bg-white hover:border-brand-lavender hover:shadow-md transition-all duration-300"
             >
               Explore Services
             </a>
@@ -161,8 +216,8 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Wave curve into next section — preserves the elegant transition */}
-      <div className="absolute bottom-0 left-0 right-0 leading-[0] pointer-events-none z-10" aria-hidden="true">
+      {/* Wave curve into next section */}
+      <div className="absolute bottom-0 left-0 right-0 leading-[0] pointer-events-none z-[2]" aria-hidden="true">
         <svg viewBox="0 0 1440 80" preserveAspectRatio="none" className="w-full h-12 md:h-16 block">
           <path
             d="M0,32 C240,80 480,0 720,32 C960,64 1200,16 1440,48 L1440,80 L0,80 Z"
