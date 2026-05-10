@@ -23,44 +23,42 @@ export default function Hero() {
       {/*
         === BACKGROUND LAYER STACK ===
 
-        The smoke shader renders dark wisps by design — `clamp(col, .08, 1.0)`
-        floors at dark gray. On a bright, airy brand site that needs to be
-        staged carefully so it reads as atmospheric purple haze, not as a
-        spooky/cyberpunk effect.
+        Now that the shader renders white→purple (no gray, no fade-in), we
+        can use it nearer full opacity and drop the heavy center mask.
 
-        Layer order (back → front):
-          1. SmokeBackground   - tinted to brand deepPurple, low opacity
-          2. Soft white mask   - center radial, lifts the middle so dark
-                                 smoke doesn't sit under hero text
+        Back → front:
+          1. SmokeBackground   - tinted to brand deepPurple, near full opacity
+          2. Light center mask - lifts text legibility a touch (was much heavier)
           3. Top + bottom fade - white gradients for clean section transitions
           4. Dot grid          - faint brand-purple texture overlay
           5. Decorative orbs   - 3 floating shapes (motion-safe)
       */}
 
-      {/* Layer 1: smoke shader, brand-tinted, soft */}
-      <div className="absolute inset-0 opacity-[0.55] pointer-events-none" aria-hidden="true">
+      {/* Layer 1: smoke shader — visible immediately, brand-tinted */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <SmokeBackground smokeColor="#5B3FD6" />
       </div>
 
-      {/* Layer 2: soft white center mask for typography readability */}
+      {/* Layer 2: very light center wash for typography legibility
+          (no longer hiding gray — just gives headline a touch more contrast) */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 65% 55% at 50% 45%, rgba(255,255,255,0.65) 0%, rgba(255,255,255,0.25) 45%, transparent 75%)",
+            "radial-gradient(ellipse 55% 45% at 50% 45%, rgba(255,255,255,0.35) 0%, transparent 70%)",
         }}
         aria-hidden="true"
       />
 
       {/* Layer 3a: top fade-to-white (under navbar) */}
       <div
-        className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-white via-white/75 to-transparent pointer-events-none"
+        className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white via-white/60 to-transparent pointer-events-none"
         aria-hidden="true"
       />
 
       {/* Layer 3b: bottom fade-to-white (into next section) */}
       <div
-        className="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-white via-white/85 to-transparent pointer-events-none z-[1]"
+        className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white via-white/70 to-transparent pointer-events-none z-[1]"
         aria-hidden="true"
       />
 

@@ -4,7 +4,12 @@ import React, { useEffect, useRef } from "react";
 import { useReducedMotion } from "framer-motion";
 
 // --- FRAGMENT SHADER ---
-// We add a `u_color` uniform to accept a color from our component.
+//
+// Original shader produced dark smoke on a gray floor (clamp .08) with a
+// 10-second dark fade-in (mix(vec3(.08), col, min(time*.1, 1))).
+// We've rewritten the core compositing so the base is pure white and noise
+// density blends toward `u_color`, giving white → purple wisps with no gray
+// and no startup fade.
 const fragmentShaderSource = `#version 300 es
 precision highp float;
 out vec4 O;
@@ -22,21 +27,27 @@ float fbm(vec2 p){float t=.0,a=1.;for(int i=0;i<5;i++){t+=a*noise(p);p*=mat2(1,-
 
 void main(){
   vec2 uv=(FC-.5*R)/R.y;
-  vec3 col=vec3(1);
   uv.x+=.25;
   uv*=vec2(2,1);
 
+  // Same fbm flow as before — preserves the original animated smoke motion.
   float n=fbm(uv*.28-vec2(T*.01,0));
   n=noise(uv*3.+n*2.);
 
-  col.r-=fbm(uv+vec2(0,T*.015)+n);
-  col.g-=fbm(uv*1.003+vec2(0,T*.015)+n+.003);
-  col.b-=fbm(uv*1.006+vec2(0,T*.015)+n+.006);
+  // Three slightly-offset samples → subtle chromatic shimmer in the wisps.
+  float n1=fbm(uv+vec2(0,T*.015)+n);
+  float n2=fbm(uv*1.003+vec2(0,T*.015)+n+.003);
+  float n3=fbm(uv*1.006+vec2(0,T*.015)+n+.006);
+  float density=(n1+n2+n3)/3.;
 
-  col=mix(col, u_color, dot(col,vec3(.21,.71,.07)));
+  // Boost contrast a little so dense regions read clearly as purple
+  // without making sparse regions anything other than pure white.
+  density=clamp(density*1.15,0.,1.);
 
-  col=mix(vec3(.08),col,min(time*.1,1.));
-  col=clamp(col,.08,1.);
+  // White base → blend toward u_color where smoke is dense.
+  // Sparse regions stay exactly vec3(1.0) — no gray anywhere.
+  vec3 col=mix(vec3(1.0), u_color, density);
+
   O=vec4(col,1);
 }`;
 
