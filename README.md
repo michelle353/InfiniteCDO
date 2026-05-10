@@ -75,3 +75,6 @@ This project is configured for [Vercel](https://vercel.com). Push to GitHub and 
 All site content lives in [`lib/data.ts`](lib/data.ts). Update the content there without touching component files.
 
 To add a real contact form backend, replace the `handleSubmit` simulation in [`components/sections/ContactForm.tsx`](components/sections/ContactForm.tsx) with a call to [Resend](https://resend.com), [Formspree](https://formspree.io), or your preferred service.
+
+
+<!-- Test PR — verifying PR workflow -->
