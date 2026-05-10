@@ -54,11 +54,14 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <>
       {/* Post header */}
-      <div className="bg-slate-950 pt-32 pb-20">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative bg-brand-lavenderLight pt-32 pb-20 lg:pt-40 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+          <div className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-brand-lavender/30 blur-[100px]" />
+        </div>
+        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-1.5 text-sm text-slate-400 hover:text-slate-200 mb-8 transition-colors"
+            className="inline-flex items-center gap-1.5 text-sm text-brand-plum hover:text-brand-deepPurple mb-8 transition-colors"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -66,11 +69,11 @@ export default async function BlogPostPage({ params }: Props) {
             Back to Blog
           </Link>
           <div className="flex flex-wrap items-center gap-3 mb-6">
-            <Badge variant="blue">{post.category}</Badge>
-            <span className="text-sm text-slate-400">{post.date}</span>
-            <span className="text-sm text-slate-400">{post.readTime}</span>
+            <Badge variant="purple">{post.category}</Badge>
+            <span className="text-sm text-brand-nearBlack/60">{post.date}</span>
+            <span className="text-sm text-brand-nearBlack/60">{post.readTime}</span>
           </div>
-          <h1 className="text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+          <h1 className="text-4xl lg:text-5xl font-bold text-brand-nearBlack tracking-tight leading-tight">
             {post.title}
           </h1>
         </div>
@@ -80,28 +83,28 @@ export default async function BlogPostPage({ params }: Props) {
       <div className="bg-white py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Author line */}
-          <div className="flex items-center gap-3 mb-12 pb-8 border-b border-slate-100">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center flex-shrink-0">
+          <div className="flex items-center gap-3 mb-12 pb-8 border-b border-brand-lavenderMid">
+            <div className="w-10 h-10 rounded-full bg-gradient-plum flex items-center justify-center flex-shrink-0">
               <span className="text-xs font-bold text-white">MG</span>
             </div>
             <div>
-              <p className="text-sm font-semibold text-slate-900">Michelle Ghai</p>
-              <p className="text-xs text-slate-500">Fractional CDO · CMA, CPA, MBA, SAFe</p>
+              <p className="text-sm font-semibold text-brand-plum">Michelle Ghai</p>
+              <p className="text-xs text-brand-nearBlack/60">Fractional CDO · CMA, CPA, MBA, SAFe</p>
             </div>
           </div>
 
           {/* Content */}
-          <div className="prose prose-slate prose-lg max-w-none">
+          <div className="max-w-none">
             {content.map((para, i) => {
               if (para.startsWith("**") && para.endsWith("**")) {
                 return (
-                  <p key={i} className="font-bold text-slate-900 text-xl my-6">
+                  <p key={i} className="font-bold text-brand-plum text-xl my-6">
                     {para.replace(/\*\*/g, "")}
                   </p>
                 );
               }
               return (
-                <p key={i} className="text-slate-600 leading-relaxed mb-5 text-lg">
+                <p key={i} className="text-brand-nearBlack/75 leading-relaxed mb-5 text-lg">
                   {para}
                 </p>
               );
@@ -109,15 +112,15 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
 
           {/* Author bio */}
-          <div className="mt-16 pt-10 border-t border-slate-100">
-            <div className="bg-slate-50 rounded-2xl p-8 flex items-start gap-6">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center flex-shrink-0">
+          <div className="mt-16 pt-10 border-t border-brand-lavenderMid">
+            <div className="bg-brand-lavenderLight rounded-2xl p-8 flex items-start gap-6 border border-brand-lavenderMid">
+              <div className="w-16 h-16 rounded-full bg-gradient-plum flex items-center justify-center flex-shrink-0">
                 <span className="text-xl font-bold text-white">MG</span>
               </div>
               <div>
-                <p className="font-bold text-slate-900 mb-1">Michelle Ghai, CMA, CPA, MBA, SAFe</p>
-                <p className="text-sm text-blue-600 font-medium mb-3">Fractional Chief Digital, Data & AI Officer</p>
-                <p className="text-sm text-slate-600 leading-relaxed">
+                <p className="font-bold text-brand-plum mb-1">Michelle Ghai, CMA, CPA, MBA, SAFe</p>
+                <p className="text-sm text-brand-deepPurple font-medium mb-3">Fractional Chief Digital, Data & AI Officer</p>
+                <p className="text-sm text-brand-nearBlack/70 leading-relaxed">
                   20+ years of enterprise digital transformation experience, now helping businesses and nonprofits unlock the potential of digital and AI without the cost of a full-time CDO.
                 </p>
               </div>
@@ -128,21 +131,21 @@ export default async function BlogPostPage({ params }: Props) {
 
       {/* Related posts */}
       {related.length > 0 && (
-        <div className="bg-slate-50 py-16">
+        <div className="bg-brand-lavenderLight py-16">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-6">Continue Reading</p>
+            <p className="text-xs font-semibold uppercase tracking-widest text-brand-deepPurple mb-6">Continue Reading</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               {related.map((p) => (
                 <Link
                   key={p.slug}
                   href={`/blog/${p.slug}`}
-                  className="group block bg-white rounded-2xl border border-slate-200 p-6 hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300"
+                  className="group block bg-white rounded-2xl border border-brand-lavenderMid p-6 hover:shadow-card-hover hover:-translate-y-0.5 hover:border-brand-lavender transition-all duration-300"
                 >
-                  <Badge variant="slate" className="mb-3">{p.category}</Badge>
-                  <h3 className="font-bold text-slate-900 leading-snug mb-2 group-hover:text-blue-600 transition-colors">
+                  <Badge variant="lavender" className="mb-3">{p.category}</Badge>
+                  <h3 className="font-bold text-brand-nearBlack leading-snug mb-2 group-hover:text-brand-deepPurple transition-colors">
                     {p.title}
                   </h3>
-                  <p className="text-xs text-slate-400">{p.readTime}</p>
+                  <p className="text-xs text-brand-nearBlack/50">{p.readTime}</p>
                 </Link>
               ))}
             </div>

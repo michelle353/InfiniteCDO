@@ -49,7 +49,6 @@ export default function ContactForm() {
     e.preventDefault();
     if (!validate()) return;
     setState("submitting");
-    // Simulate async submit — wire up to a real endpoint (Resend, Formspree, etc.)
     await new Promise((r) => setTimeout(r, 1400));
     setState("success");
   };
@@ -59,20 +58,20 @@ export default function ContactForm() {
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-white rounded-2xl border border-slate-200 p-12 text-center"
+        className="bg-white rounded-2xl border border-brand-lavenderMid p-12 text-center shadow-card"
       >
-        <div className="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center mx-auto mb-6">
-          <svg className="w-8 h-8 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+        <div className="w-16 h-16 rounded-full bg-brand-lavenderLight flex items-center justify-center mx-auto mb-6">
+          <svg className="w-8 h-8 text-brand-deepPurple" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
           </svg>
         </div>
-        <h3 className="text-2xl font-bold text-slate-900 mb-3">Message sent!</h3>
-        <p className="text-slate-600 mb-8 leading-relaxed">
+        <h3 className="text-2xl font-bold text-brand-nearBlack mb-3">Message sent!</h3>
+        <p className="text-brand-nearBlack/60 mb-8 leading-relaxed">
           Thanks for reaching out. You&apos;ll hear back within one business day to schedule your discovery call.
         </p>
         <button
           onClick={() => { setState("idle"); setForm(INITIAL); }}
-          className="text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors"
+          className="text-sm font-semibold text-brand-deepPurple hover:text-brand-plum transition-colors"
         >
           Send another message
         </button>
@@ -81,58 +80,23 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 p-8 lg:p-10">
-      <h2 className="text-2xl font-bold text-slate-900 mb-2">Send a message</h2>
-      <p className="text-slate-500 text-sm mb-8">We read every message and respond within one business day.</p>
+    <div className="bg-white rounded-2xl border border-brand-lavenderMid p-8 lg:p-10 shadow-card">
+      <h2 className="text-2xl font-bold text-brand-nearBlack mb-2">Send a message</h2>
+      <p className="text-brand-nearBlack/60 text-sm mb-8">We read every message and respond within one business day.</p>
 
       <form onSubmit={handleSubmit} noValidate className="space-y-6">
-        {/* Name row */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <Field
-            label="First Name"
-            name="firstName"
-            value={form.firstName}
-            onChange={handleChange}
-            error={errors.firstName}
-            required
-            placeholder="Michelle"
-          />
-          <Field
-            label="Last Name"
-            name="lastName"
-            value={form.lastName}
-            onChange={handleChange}
-            error={errors.lastName}
-            required
-            placeholder="Smith"
-          />
+          <Field label="First Name" name="firstName" value={form.firstName} onChange={handleChange} error={errors.firstName} required placeholder="Michelle" />
+          <Field label="Last Name" name="lastName" value={form.lastName} onChange={handleChange} error={errors.lastName} required placeholder="Smith" />
         </div>
 
-        {/* Email */}
-        <Field
-          label="Email"
-          name="email"
-          type="email"
-          value={form.email}
-          onChange={handleChange}
-          error={errors.email}
-          required
-          placeholder="you@organization.org"
-        />
+        <Field label="Email" name="email" type="email" value={form.email} onChange={handleChange} error={errors.email} required placeholder="you@organization.org" />
 
-        {/* Organization */}
-        <Field
-          label="Organization"
-          name="organization"
-          value={form.organization}
-          onChange={handleChange}
-          placeholder="Your company or nonprofit (optional)"
-        />
+        <Field label="Organization" name="organization" value={form.organization} onChange={handleChange} placeholder="Your company or nonprofit (optional)" />
 
-        {/* Message */}
         <div className="space-y-1.5">
-          <label htmlFor="message" className="block text-sm font-medium text-slate-700">
-            Message <span className="text-red-500" aria-hidden="true">*</span>
+          <label htmlFor="message" className="block text-sm font-medium text-brand-nearBlack/80">
+            Message <span className="text-brand-deepPurple" aria-hidden="true">*</span>
           </label>
           <textarea
             id="message"
@@ -141,10 +105,10 @@ export default function ContactForm() {
             value={form.message}
             onChange={handleChange}
             placeholder="Tell us about your organization and what you're hoping to achieve..."
-            className={`w-full rounded-xl border px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-all resize-none ${
+            className={`w-full rounded-xl border px-4 py-3 text-sm text-brand-nearBlack placeholder:text-brand-nearBlack/40 outline-none transition-all resize-none ${
               errors.message
                 ? "border-red-300 focus:border-red-400 focus:ring-2 focus:ring-red-100"
-                : "border-slate-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-50"
+                : "border-brand-lavenderMid focus:border-brand-deepPurple focus:ring-2 focus:ring-brand-lavenderLight"
             }`}
             aria-describedby={errors.message ? "message-error" : undefined}
           />
@@ -161,7 +125,7 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={state === "submitting"}
-          className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-all duration-200 shadow-sm hover:shadow-md disabled:opacity-60 disabled:pointer-events-none active:scale-[0.98]"
+          className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-brand-deepPurple text-white font-semibold rounded-xl hover:bg-brand-deepPurpleHover transition-all duration-200 shadow-sm hover:shadow-glow-purple disabled:opacity-60 disabled:pointer-events-none active:scale-[0.98]"
         >
           {state === "submitting" ? (
             <>
@@ -181,7 +145,7 @@ export default function ContactForm() {
           )}
         </button>
 
-        <p className="text-xs text-slate-400 text-center leading-relaxed">
+        <p className="text-xs text-brand-nearBlack/40 text-center leading-relaxed">
           By submitting this form, you agree to be contacted about services. We never share your information.
         </p>
       </form>
@@ -205,9 +169,9 @@ function Field({ label, name, value, onChange, error, required, placeholder, typ
   const errorId = `${id}-error`;
   return (
     <div className="space-y-1.5">
-      <label htmlFor={id} className="block text-sm font-medium text-slate-700">
+      <label htmlFor={id} className="block text-sm font-medium text-brand-nearBlack/80">
         {label}
-        {required && <span className="text-red-500 ml-0.5" aria-hidden="true">*</span>}
+        {required && <span className="text-brand-deepPurple ml-0.5" aria-hidden="true">*</span>}
       </label>
       <input
         id={id}
@@ -217,10 +181,10 @@ function Field({ label, name, value, onChange, error, required, placeholder, typ
         onChange={onChange}
         placeholder={placeholder}
         autoComplete={name === "email" ? "email" : name === "firstName" ? "given-name" : name === "lastName" ? "family-name" : "organization"}
-        className={`w-full rounded-xl border px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-all ${
+        className={`w-full rounded-xl border px-4 py-3 text-sm text-brand-nearBlack placeholder:text-brand-nearBlack/40 outline-none transition-all ${
           error
             ? "border-red-300 focus:border-red-400 focus:ring-2 focus:ring-red-100"
-            : "border-slate-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-50"
+            : "border-brand-lavenderMid focus:border-brand-deepPurple focus:ring-2 focus:ring-brand-lavenderLight"
         }`}
         aria-describedby={error ? errorId : undefined}
         aria-invalid={error ? "true" : undefined}

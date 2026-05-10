@@ -19,28 +19,42 @@ export default function About() {
             className="relative"
           >
             {/* Background decoration */}
-            <div className="absolute -top-6 -left-6 w-48 h-48 bg-blue-50 rounded-3xl" aria-hidden="true" />
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-cyan-50 rounded-2xl" aria-hidden="true" />
+            <div className="absolute -top-6 -left-6 w-48 h-48 bg-brand-lavenderLight rounded-3xl" aria-hidden="true" />
+            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-brand-lavenderMid rounded-2xl" aria-hidden="true" />
 
-            {/* Photo placeholder styled block */}
-            <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-slate-800 to-slate-900 aspect-[4/5] shadow-2xl">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 to-slate-900/60" />
-              {/* Initials placeholder */}
+            {/* Photo card
+                TO ADD A REAL HEADSHOT:
+                1. Drop a photo at /public/headshot.jpg (or .png)
+                2. Uncomment the <Image /> block below
+                3. Delete or hide the branded fallback below it */}
+            <div className="relative rounded-2xl overflow-hidden bg-gradient-lavender aspect-[4/5] shadow-card border border-brand-lavenderMid">
+              {/*
+              <Image
+                src="/headshot.jpg"
+                alt={`${siteConfig.founder}, ${siteConfig.credentials}`}
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
+                className="object-cover"
+              />
+              */}
+
+              {/* Branded fallback — remove when adding real photo */}
               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center mb-4 shadow-xl">
+                <div className="w-32 h-32 rounded-full bg-gradient-plum flex items-center justify-center mb-4 shadow-lg">
                   <span className="text-4xl font-bold text-white">MG</span>
                 </div>
-                <p className="text-white font-semibold text-xl">{siteConfig.founder}</p>
-                <p className="text-slate-400 text-sm mt-1">{siteConfig.credentials}</p>
+                <p className="text-brand-plum font-semibold text-xl">{siteConfig.founder}</p>
+                <p className="text-brand-plum/70 text-sm mt-1">{siteConfig.credentials}</p>
               </div>
 
               {/* Floating credentials card */}
               <div className="absolute bottom-6 left-6 right-6">
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10">
-                  <p className="text-xs font-semibold text-blue-300 uppercase tracking-widest mb-2">Credentials</p>
+                <div className="bg-white/95 backdrop-blur-sm rounded-xl p-4 border border-brand-lavenderMid shadow-sm">
+                  <p className="text-xs font-semibold text-brand-deepPurple uppercase tracking-widest mb-2">Credentials</p>
                   <div className="flex flex-wrap gap-2">
                     {aboutContent.credentials.map((cred) => (
-                      <span key={cred} className="text-xs bg-white/10 text-white rounded-lg px-2.5 py-1">
+                      <span key={cred} className="text-xs bg-brand-lavenderLight text-brand-plum rounded-lg px-2.5 py-1 font-medium">
                         {cred.split(" ")[0]}
                       </span>
                     ))}
@@ -57,32 +71,32 @@ export default function About() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
           >
-            <p className="text-sm font-semibold uppercase tracking-widest text-blue-600 mb-3">
+            <p className="text-sm font-semibold uppercase tracking-widest text-brand-deepPurple mb-3">
               About Michelle
             </p>
-            <h2 className="text-display-md font-bold text-slate-900 tracking-tight mb-6">
+            <h2 className="text-display-md font-bold text-brand-nearBlack tracking-tight mb-6">
               {aboutContent.headline}
             </h2>
 
-            <div className="space-y-4 text-slate-600 leading-relaxed mb-8">
+            <div className="space-y-4 text-brand-nearBlack/70 leading-relaxed mb-8">
               {aboutContent.bio.slice(0, 2).map((para, i) => (
                 <p key={i}>{para}</p>
               ))}
             </div>
 
             {/* Callout box */}
-            <div className="bg-slate-50 border border-slate-200 rounded-xl p-6 mb-8">
-              <h3 className="font-semibold text-slate-900 mb-2">{aboutContent.callout.heading}</h3>
-              <p className="text-slate-600 text-sm leading-relaxed">{aboutContent.callout.body}</p>
+            <div className="bg-brand-lavenderLight border border-brand-lavenderMid rounded-xl p-6 mb-8">
+              <h3 className="font-semibold text-brand-plum mb-2">{aboutContent.callout.heading}</h3>
+              <p className="text-brand-nearBlack/70 text-sm leading-relaxed">{aboutContent.callout.body}</p>
             </div>
 
             {/* Personal note */}
-            <p className="text-slate-500 text-sm italic mb-8">{aboutContent.personal}</p>
+            <p className="text-brand-nearBlack/50 text-sm italic mb-8">{aboutContent.personal}</p>
 
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors shadow-sm hover:shadow-md"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-deepPurple text-white text-sm font-semibold rounded-lg hover:bg-brand-deepPurpleHover transition-colors shadow-sm hover:shadow-md"
               >
                 Full Story
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
@@ -91,7 +105,7 @@ export default function About() {
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-5 py-2.5 border border-slate-300 text-slate-700 text-sm font-semibold rounded-lg hover:border-slate-400 hover:bg-slate-50 transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 border border-brand-lavenderMid text-brand-plum text-sm font-semibold rounded-lg hover:border-brand-lavender hover:bg-brand-lavenderLight transition-colors"
               >
                 Work Together
               </Link>

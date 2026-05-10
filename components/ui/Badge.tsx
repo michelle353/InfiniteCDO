@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-type BadgeVariant = "blue" | "cyan" | "green" | "purple" | "slate" | "orange";
+type BadgeVariant = "purple" | "lavender" | "plum" | "outline";
 
 interface BadgeProps {
   variant?: BadgeVariant;
@@ -9,15 +9,13 @@ interface BadgeProps {
 }
 
 const variants: Record<BadgeVariant, string> = {
-  blue: "bg-blue-100 text-blue-700 ring-blue-200",
-  cyan: "bg-cyan-100 text-cyan-700 ring-cyan-200",
-  green: "bg-emerald-100 text-emerald-700 ring-emerald-200",
-  purple: "bg-purple-100 text-purple-700 ring-purple-200",
-  slate: "bg-slate-100 text-slate-600 ring-slate-200",
-  orange: "bg-orange-100 text-orange-700 ring-orange-200",
+  purple: "bg-brand-lavenderMid text-brand-plum ring-brand-lavender/50",
+  lavender: "bg-brand-lavenderLight text-brand-deepPurple ring-brand-lavenderMid",
+  plum: "bg-brand-plum text-white ring-brand-plumLight",
+  outline: "bg-white text-brand-plum ring-brand-lavenderMid",
 };
 
-export default function Badge({ variant = "slate", children, className }: BadgeProps) {
+export default function Badge({ variant = "lavender", children, className }: BadgeProps) {
   return (
     <span
       className={cn(

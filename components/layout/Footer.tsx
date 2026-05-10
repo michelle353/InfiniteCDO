@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { siteConfig } from "@/lib/data";
 
 const footerLinks = {
@@ -19,20 +20,24 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-slate-900 text-slate-400">
+    <footer className="bg-brand-plum text-brand-lavenderMid/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main footer grid */}
         <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand column */}
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-2 group mb-4">
-              <div className="relative w-8 h-8 flex-shrink-0">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-500 to-cyan-400" />
-                <span className="absolute inset-0 flex items-center justify-center text-white font-bold text-sm">∞</span>
+            <Link href="/" className="inline-flex items-center mb-5" aria-label="The Infinite CDO home">
+              <div className="bg-white rounded-xl px-4 py-3 inline-flex">
+                <Image
+                  src="/logo.png"
+                  alt="The Infinite CDO"
+                  width={200}
+                  height={64}
+                  className="h-10 w-auto"
+                />
               </div>
-              <span className="font-semibold text-white text-base tracking-tight">The Infinite CDO</span>
             </Link>
-            <p className="text-sm leading-relaxed max-w-sm mb-6">
+            <p className="text-sm leading-relaxed max-w-sm mb-6 text-white/70">
               Fractional Chief Digital, Data & AI Officer helping businesses and nonprofits unlock the full potential of digital transformation.
             </p>
             {/* Social icons */}
@@ -58,7 +63,7 @@ export default function Footer() {
           {/* Link columns */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h3 className="text-xs font-semibold text-slate-300 uppercase tracking-widest mb-4">
+              <h3 className="text-xs font-semibold text-white uppercase tracking-widest mb-4">
                 {category}
               </h3>
               <ul className="space-y-3">
@@ -66,7 +71,7 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm hover:text-slate-200 transition-colors duration-150"
+                      className="text-sm hover:text-white transition-colors duration-150"
                     >
                       {link.label}
                     </Link>
@@ -78,11 +83,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-slate-800 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-slate-500">
+        <div className="border-t border-white/10 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-white/50">
             © {year} The Infinite CDO. All rights reserved.
           </p>
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-white/50">
             Fractional CDO services for businesses & nonprofits
           </p>
         </div>
@@ -98,7 +103,7 @@ function SocialLink({ href, label, children }: { href: string; label: string; ch
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="w-9 h-9 rounded-lg bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-400 hover:text-slate-200 transition-all duration-150"
+      className="w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/70 hover:text-white transition-all duration-150"
     >
       {children}
     </a>

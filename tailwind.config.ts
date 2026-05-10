@@ -9,18 +9,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        navy: {
-          50: "#eff6ff",
-          100: "#dbeafe",
-          200: "#bfdbfe",
-          300: "#93c5fd",
-          400: "#60a5fa",
-          500: "#3b82f6",
-          600: "#2563eb",
-          700: "#1d4ed8",
-          800: "#1e3a5f",
-          900: "#0f172a",
-          950: "#080f1f",
+        // Brand palette — Infinite CDO
+        brand: {
+          lavender: "#B9A0F5",      // soft lavender (logo background)
+          lavenderLight: "#F4F0FF", // very pale lavender, section backgrounds
+          lavenderMid: "#E5DAFC",   // mid lavender, cards / hover states
+          deepPurple: "#5B3FD6",    // CTAs, primary accent
+          deepPurpleHover: "#4A30C2",
+          plum: "#3B236D",          // dark text / footer / dark sections
+          plumLight: "#4F2E8A",
+          nearBlack: "#111111",     // body text
+          offWhite: "#FAFAFA",
         },
       },
       fontFamily: {
@@ -36,8 +35,9 @@ const config: Config = {
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-hero": "linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%)",
-        "gradient-card": "linear-gradient(135deg, rgba(37,99,235,0.1) 0%, rgba(6,182,212,0.1) 100%)",
+        "gradient-lavender": "linear-gradient(135deg, #F4F0FF 0%, #E5DAFC 100%)",
+        "gradient-plum": "linear-gradient(135deg, #3B236D 0%, #5B3FD6 100%)",
+        "gradient-hero": "linear-gradient(180deg, #F4F0FF 0%, #FFFFFF 100%)",
       },
       animation: {
         "fade-up": "fadeUp 0.6s ease-out forwards",
@@ -60,10 +60,10 @@ const config: Config = {
         },
       },
       boxShadow: {
-        "card": "0 1px 3px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.04)",
-        "card-hover": "0 4px 6px rgba(0,0,0,0.07), 0 20px 40px rgba(0,0,0,0.08)",
-        "glow-blue": "0 0 40px rgba(37,99,235,0.25)",
-        "glow-cyan": "0 0 40px rgba(6,182,212,0.2)",
+        "card": "0 1px 3px rgba(91,63,214,0.06), 0 8px 24px rgba(91,63,214,0.06)",
+        "card-hover": "0 4px 6px rgba(91,63,214,0.08), 0 20px 40px rgba(91,63,214,0.1)",
+        "glow-purple": "0 0 40px rgba(91,63,214,0.25)",
+        "glow-lavender": "0 0 40px rgba(185,160,245,0.3)",
       },
     },
   },

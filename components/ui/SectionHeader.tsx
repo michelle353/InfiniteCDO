@@ -29,7 +29,7 @@ export default function SectionHeader({
         <p
           className={cn(
             "text-sm font-semibold uppercase tracking-widest mb-3",
-            theme === "dark" ? "text-blue-400" : "text-blue-600"
+            theme === "dark" ? "text-brand-lavender" : "text-brand-deepPurple"
           )}
         >
           {eyebrow}
@@ -38,7 +38,7 @@ export default function SectionHeader({
       <h2
         className={cn(
           "text-display-md font-bold tracking-tight",
-          theme === "dark" ? "text-white" : "text-slate-900"
+          theme === "dark" ? "text-white" : "text-brand-nearBlack"
         )}
       >
         {heading}
@@ -47,7 +47,7 @@ export default function SectionHeader({
         <p
           className={cn(
             "mt-4 text-lg leading-relaxed",
-            theme === "dark" ? "text-slate-400" : "text-slate-600"
+            theme === "dark" ? "text-white/70" : "text-brand-nearBlack/60"
           )}
         >
           {subheading}

@@ -14,12 +14,17 @@
   }
 
   body {
-    @apply text-slate-900 bg-white;
+    @apply text-brand-nearBlack bg-white;
   }
 
-  /* Focus ring */
+  /* Focus ring — uses brand deep purple */
   :focus-visible {
-    @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+    @apply outline-none ring-2 ring-brand-deepPurple ring-offset-2;
+  }
+
+  /* Selection color */
+  ::selection {
+    @apply bg-brand-lavenderMid text-brand-plum;
   }
 }
 
@@ -28,7 +33,6 @@
     text-wrap: balance;
   }
 
-  /* Hide scrollbar for testimonial carousel */
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
