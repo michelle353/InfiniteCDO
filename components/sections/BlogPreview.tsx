@@ -8,7 +8,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 
 export default function BlogPreview() {
   return (
-    <section className="py-24 lg:py-32 bg-white" aria-label="Recent articles">
+    <section className="py-24 lg:py-32 bg-brand-lavenderLight" aria-label="Recent articles">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
           <SectionHeader
@@ -20,7 +20,7 @@ export default function BlogPreview() {
           />
           <Link
             href="/blog"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 hover:text-blue-700 flex-shrink-0"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-deepPurple hover:text-brand-plum flex-shrink-0"
           >
             All articles
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
@@ -40,23 +40,23 @@ export default function BlogPreview() {
             >
               <Link
                 href={`/blog/${post.slug}`}
-                className="group block bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300"
+                className="group block bg-white rounded-2xl border border-brand-lavenderMid/60 overflow-hidden hover:shadow-card-hover hover:-translate-y-0.5 hover:border-brand-lavender transition-all duration-300"
               >
                 {/* Color band */}
-                <div className={`h-1.5 ${post.featured ? "bg-gradient-to-r from-blue-500 to-cyan-400" : "bg-slate-200"}`} />
+                <div className={`h-1.5 ${post.featured ? "bg-gradient-plum" : "bg-brand-lavenderMid"}`} />
 
                 <div className="p-7">
                   <div className="flex items-center gap-3 mb-4">
-                    <Badge variant={post.featured ? "blue" : "slate"}>{post.category}</Badge>
-                    <span className="text-xs text-slate-400">{post.readTime}</span>
+                    <Badge variant={post.featured ? "purple" : "lavender"}>{post.category}</Badge>
+                    <span className="text-xs text-brand-nearBlack/40">{post.readTime}</span>
                   </div>
-                  <h3 className="text-lg font-bold text-slate-900 leading-snug mb-3 group-hover:text-blue-600 transition-colors">
+                  <h3 className="text-lg font-bold text-brand-nearBlack leading-snug mb-3 group-hover:text-brand-deepPurple transition-colors">
                     {post.title}
                   </h3>
-                  <p className="text-sm text-slate-500 leading-relaxed mb-5">{post.excerpt}</p>
+                  <p className="text-sm text-brand-nearBlack/60 leading-relaxed mb-5">{post.excerpt}</p>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-slate-400">{post.date}</span>
-                    <span className="text-sm font-semibold text-blue-600 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span className="text-xs text-brand-nearBlack/40">{post.date}</span>
+                    <span className="text-sm font-semibold text-brand-deepPurple flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                       Read
                       <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
