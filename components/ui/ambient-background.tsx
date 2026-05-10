@@ -62,31 +62,36 @@ export default function AmbientBackground({
       <div className="absolute inset-0 bg-white" />
 
       {/* ── Layer 2: layered radial gradients (the "shader" core) ──
-          Multiple soft purple radials at low alpha — feels like ambient
-          studio lighting. Uses the exact palette the brief specified. */}
+          Hues are pulled directly from the brand palette so the glow
+          reads as part of the site, not a stand-alone effect.
+
+            deepPurple #5B3FD6  → hsl(250, 67%, 54%)
+            lavender   #B9A0F5  → hsl(257, 81%, 79%)
+            lavenderMid #E5DAFC → hsl(263, 89%, 92%)
+            lavenderLight #F4F0FF → hsl(258, 100%, 97%)                  */}
       <div
         className="absolute inset-0"
         style={{
           backgroundImage: `
             radial-gradient(
               ellipse 70% 55% at 50% 35%,
-              hsla(260, 85%, 68%, ${glowAlpha}) 0%,
-              hsla(260, 85%, 68%, 0) 70%
+              hsla(250, 67%, 54%, ${glowAlpha}) 0%,
+              hsla(250, 67%, 54%, 0) 70%
             ),
             radial-gradient(
               ellipse 50% 40% at 15% 20%,
-              hsla(270, 70%, 78%, ${glowAlpha * 0.85}) 0%,
-              hsla(270, 70%, 78%, 0) 75%
+              hsla(257, 81%, 79%, ${glowAlpha * 0.9}) 0%,
+              hsla(257, 81%, 79%, 0) 75%
             ),
             radial-gradient(
               ellipse 55% 45% at 85% 80%,
-              hsla(280, 65%, 88%, ${glowAlpha * 0.9}) 0%,
-              hsla(280, 65%, 88%, 0) 70%
+              hsla(263, 89%, 92%, ${glowAlpha * 1.1}) 0%,
+              hsla(263, 89%, 92%, 0) 70%
             ),
             radial-gradient(
               ellipse 80% 60% at 50% 100%,
-              hsla(250, 90%, 92%, ${glowAlpha}) 0%,
-              hsla(250, 90%, 92%, 0) 75%
+              hsla(258, 100%, 97%, ${glowAlpha * 1.2}) 0%,
+              hsla(258, 100%, 97%, 0) 75%
             )
           `,
         }}
@@ -97,28 +102,31 @@ export default function AmbientBackground({
           Disabled when prefers-reduced-motion is set. */}
       {showOrbs && (
         <>
+          {/* deepPurple orb — top-left, the strongest brand presence */}
           <motion.div
             className="absolute -top-32 -left-32 h-[560px] w-[560px] rounded-full will-change-transform"
             style={{
-              backgroundColor: `hsla(260, 85%, 68%, ${orbAlpha * 0.55})`,
+              backgroundColor: `hsla(250, 67%, 54%, ${orbAlpha * 0.5})`,
               filter: "blur(120px)",
             }}
             animate={animate ? { x: [0, 40, 0], y: [0, 30, 0] } : undefined}
             transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
           />
+          {/* lavender orb — top-right, the brand's signature soft purple */}
           <motion.div
             className="absolute top-1/4 -right-40 h-[520px] w-[520px] rounded-full will-change-transform"
             style={{
-              backgroundColor: `hsla(270, 70%, 78%, ${orbAlpha * 0.5})`,
+              backgroundColor: `hsla(257, 81%, 79%, ${orbAlpha * 0.6})`,
               filter: "blur(110px)",
             }}
             animate={animate ? { x: [0, -30, 0], y: [0, 40, 0] } : undefined}
             transition={{ duration: 26, repeat: Infinity, ease: "easeInOut", delay: 2 }}
           />
+          {/* lavenderMid orb — bottom, lifts the floor without darkening it */}
           <motion.div
             className="absolute -bottom-40 left-1/3 h-[460px] w-[460px] rounded-full will-change-transform"
             style={{
-              backgroundColor: `hsla(280, 65%, 88%, ${orbAlpha * 0.6})`,
+              backgroundColor: `hsla(263, 89%, 92%, ${orbAlpha * 0.8})`,
               filter: "blur(100px)",
             }}
             animate={animate ? { x: [0, 25, 0], y: [0, -35, 0] } : undefined}
@@ -141,9 +149,10 @@ export default function AmbientBackground({
             numOctaves="2"
             stitchTiles="stitch"
           />
+          {/* Tints grain to the brand deepPurple (#5B3FD6 = 0.357 0.247 0.839) */}
           <feColorMatrix
             type="matrix"
-            values="0 0 0 0 0.35  0 0 0 0 0.24  0 0 0 0 0.84  0 0 0 0.6 0"
+            values="0 0 0 0 0.357  0 0 0 0 0.247  0 0 0 0 0.839  0 0 0 0.55 0"
           />
         </filter>
         <rect width="100%" height="100%" filter="url(#ambient-noise)" />
@@ -155,8 +164,9 @@ export default function AmbientBackground({
         <div
           className="absolute inset-0 opacity-[0.18]"
           style={{
+            // Brand deepPurple #5B3FD6 = hsl(250, 67%, 54%)
             backgroundImage:
-              "radial-gradient(circle, hsl(260 60% 45% / 0.55) 1px, transparent 1px)",
+              "radial-gradient(circle, hsl(250 67% 54% / 0.55) 1px, transparent 1px)",
             backgroundSize: "32px 32px",
             maskImage:
               "radial-gradient(ellipse 75% 60% at 50% 50%, black 35%, transparent 80%)",
