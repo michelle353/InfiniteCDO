@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import AmbientBackground from "@/components/ui/ambient-background";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -11,113 +12,43 @@ const fadeUp = {
   }),
 };
 
-const float = {
-  animate: {
-    y: [0, -20, 0],
-    transition: { duration: 8, repeat: Infinity, ease: "easeInOut" },
-  },
-};
-
 export default function Hero() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section
-      className="relative min-h-[92vh] lg:min-h-screen flex items-center overflow-hidden bg-gradient-to-b from-brand-lavenderLight via-white to-white"
+      className="relative overflow-hidden bg-white min-h-[92vh] lg:min-h-screen flex items-center"
       aria-label="Hero"
     >
-      {/* === LAYERED BACKGROUND === */}
+      {/* Premium ambient background — soft lavender glow, drifting orbs,
+          faint dot grid, edge fade to white. Sits behind all content. */}
+      <AmbientBackground />
 
-      {/* Soft radial glows */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-        <motion.div
-          {...float}
-          className="absolute -top-32 -left-32 w-[640px] h-[640px] rounded-full bg-brand-lavender/30 blur-[120px]"
-        />
-        <motion.div
-          animate={{
-            y: [0, 30, 0],
-            transition: { duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 },
-          }}
-          className="absolute top-1/4 right-0 w-[520px] h-[520px] rounded-full bg-brand-lavenderMid/60 blur-[100px]"
-        />
-        <motion.div
-          animate={{
-            y: [0, -25, 0],
-            transition: { duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 },
-          }}
-          className="absolute bottom-0 left-1/3 w-[420px] h-[420px] rounded-full bg-brand-deepPurple/15 blur-[90px]"
-        />
-      </div>
+      {/* Floating geometric accents — purely decorative, motion-safe */}
+      {!reduceMotion && (
+        <>
+          <motion.div
+            animate={{ y: [0, -15, 0] }}
+            transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-32 right-[10%] w-3 h-3 rounded-full bg-brand-deepPurple/40 hidden md:block pointer-events-none"
+            aria-hidden="true"
+          />
+          <motion.div
+            animate={{ y: [0, 20, 0], rotate: [0, -8, 0] }}
+            transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+            className="absolute bottom-40 left-[8%] w-4 h-4 rounded-sm bg-brand-lavender/60 hidden md:block pointer-events-none"
+            aria-hidden="true"
+          />
+          <motion.div
+            animate={{ y: [0, -12, 0] }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+            className="absolute top-1/2 right-[6%] w-2 h-2 rounded-full bg-brand-plum/50 hidden md:block pointer-events-none"
+            aria-hidden="true"
+          />
+        </>
+      )}
 
-      {/* Dot pattern (AI / digital texture) */}
-      <div
-        className="absolute inset-0 opacity-[0.18] pointer-events-none"
-        style={{
-          backgroundImage: "radial-gradient(circle, #5B3FD6 1px, transparent 1px)",
-          backgroundSize: "32px 32px",
-          maskImage: "radial-gradient(ellipse 80% 60% at 50% 50%, black 40%, transparent 75%)",
-          WebkitMaskImage: "radial-gradient(ellipse 80% 60% at 50% 50%, black 40%, transparent 75%)",
-        }}
-        aria-hidden="true"
-      />
-
-      {/* Flowing curved AI line — abstract network suggestion */}
-      <svg
-        className="absolute inset-0 w-full h-full opacity-[0.10] pointer-events-none"
-        viewBox="0 0 1440 800"
-        preserveAspectRatio="xMidYMid slice"
-        aria-hidden="true"
-      >
-        <defs>
-          <linearGradient id="line-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#B9A0F5" stopOpacity="0" />
-            <stop offset="50%" stopColor="#5B3FD6" stopOpacity="1" />
-            <stop offset="100%" stopColor="#B9A0F5" stopOpacity="0" />
-          </linearGradient>
-        </defs>
-        <path
-          d="M-100,600 C200,500 400,650 700,500 C1000,350 1200,500 1540,400"
-          fill="none"
-          stroke="url(#line-grad)"
-          strokeWidth="1.5"
-        />
-        <path
-          d="M-100,650 C200,580 500,700 800,600 C1100,500 1300,650 1540,550"
-          fill="none"
-          stroke="url(#line-grad)"
-          strokeWidth="1"
-          strokeOpacity="0.6"
-        />
-      </svg>
-
-      {/* Floating geometric accents */}
-      <motion.div
-        animate={{
-          y: [0, -15, 0],
-          rotate: [0, 5, 0],
-          transition: { duration: 9, repeat: Infinity, ease: "easeInOut" },
-        }}
-        className="absolute top-32 right-[10%] w-3 h-3 rounded-full bg-brand-deepPurple/40 hidden md:block"
-        aria-hidden="true"
-      />
-      <motion.div
-        animate={{
-          y: [0, 20, 0],
-          rotate: [0, -8, 0],
-          transition: { duration: 11, repeat: Infinity, ease: "easeInOut", delay: 1.5 },
-        }}
-        className="absolute bottom-40 left-[8%] w-4 h-4 rounded-sm bg-brand-lavender/60 hidden md:block"
-        aria-hidden="true"
-      />
-      <motion.div
-        animate={{
-          y: [0, -12, 0],
-          transition: { duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 },
-        }}
-        className="absolute top-1/2 right-[6%] w-2 h-2 rounded-full bg-brand-plum/50 hidden md:block"
-        aria-hidden="true"
-      />
-
-      {/* === CONTENT === */}
+      {/* Content layer */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 lg:py-36 pt-32 lg:pt-40 w-full">
         <div className="max-w-4xl mx-auto text-center">
           {/* Eyebrow pill */}
@@ -128,12 +59,14 @@ export default function Hero() {
             variants={fadeUp}
             className="mb-8 flex justify-center"
           >
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-brand-lavenderMid text-brand-deepPurple text-sm font-medium shadow-sm">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 backdrop-blur-md border border-brand-lavenderMid text-brand-deepPurple text-sm font-medium shadow-sm">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-deepPurple opacity-75" />
+                {!reduceMotion && (
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-deepPurple opacity-75" />
+                )}
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-deepPurple" />
               </span>
-              Fractional Chief Digital, Data & AI Officer
+              Fractional Chief Digital, Data &amp; AI Officer
             </span>
           </motion.div>
 
@@ -151,7 +84,6 @@ export default function Hero() {
               <span className="bg-gradient-to-r from-brand-deepPurple via-brand-plumLight to-brand-deepPurple bg-clip-text text-transparent">
                 Infinite Possibilities.
               </span>
-              {/* Underline accent */}
               <svg
                 className="absolute -bottom-3 left-0 w-full h-3"
                 viewBox="0 0 400 12"
@@ -177,7 +109,7 @@ export default function Hero() {
             variants={fadeUp}
             className="mt-8 text-xl lg:text-2xl text-brand-nearBlack/65 leading-relaxed max-w-2xl mx-auto font-light"
           >
-            Enterprise-grade digital, data & AI leadership for businesses and nonprofits — without the cost of a full-time executive.
+            Enterprise-grade digital, data &amp; AI leadership for businesses and nonprofits — without the cost of a full-time executive.
           </motion.p>
 
           {/* CTAs */}
@@ -199,7 +131,7 @@ export default function Hero() {
             </a>
             <a
               href="/services"
-              className="inline-flex items-center gap-2 px-7 py-4 bg-white/90 backdrop-blur-sm text-brand-plum font-semibold rounded-xl border border-brand-lavenderMid hover:bg-white hover:border-brand-lavender hover:shadow-md transition-all duration-300"
+              className="inline-flex items-center gap-2 px-7 py-4 bg-white/80 backdrop-blur-md text-brand-plum font-semibold rounded-xl border border-brand-lavenderMid hover:bg-white hover:border-brand-lavender hover:shadow-md transition-all duration-300"
             >
               Explore Services
             </a>
@@ -229,13 +161,9 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Bottom curve into next section */}
-      <div className="absolute bottom-0 left-0 right-0 leading-[0] pointer-events-none" aria-hidden="true">
-        <svg
-          viewBox="0 0 1440 80"
-          preserveAspectRatio="none"
-          className="w-full h-12 md:h-16 block"
-        >
+      {/* Wave curve into next section — preserves the elegant transition */}
+      <div className="absolute bottom-0 left-0 right-0 leading-[0] pointer-events-none z-10" aria-hidden="true">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" className="w-full h-12 md:h-16 block">
           <path
             d="M0,32 C240,80 480,0 720,32 C960,64 1200,16 1440,48 L1440,80 L0,80 Z"
             fill="#FFFFFF"
