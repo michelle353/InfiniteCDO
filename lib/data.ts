@@ -17,7 +17,7 @@ export const siteConfig = {
 
 export const stats = [
   {
-    value: 20,
+    value: 25,
     suffix: "+",
     label: "Years of Experience",
     description: "Leading digital transformation across major institutions",
@@ -30,78 +30,132 @@ export const stats = [
     description: "Enterprise-scale portfolio and program management",
   },
   {
+    value: 300,
+    suffix: "+",
+    label: "Team Members Led",
+    description: "Building and scaling high-performing cross-functional teams",
+  },
+  {
     value: 500,
     prefix: "$",
     suffix: "MM+",
     label: "Benefits Generated",
-    description: "Measurable value delivered for clients and organizations",
+    description: "Measurable value delivered for clients and stakeholders",
   },
 ];
 
 export const services = [
   {
-    id: "digital-strategy",
+    id: "ai-readiness",
+    icon: "brain",
+    title: "AI Readiness & Strategy",
+    shortTitle: "AI Strategy",
+    tagline: "Become AI-ready, intentionally",
+    description:
+      "Move from AI curiosity to AI capability. We assess your current state, identify highest-value AI opportunities, and build a roadmap that fits your team, data, and ambition.",
+    benefits: [
+      "AI readiness assessment",
+      "Opportunity prioritization",
+      "Pilot design & guardrails",
+      "Workforce enablement plan",
+    ],
+    color: "deepPurple",
+  },
+  {
+    id: "digital-transformation",
     icon: "compass",
-    title: "Digital Strategy & Roadmap",
-    shortTitle: "Digital Strategy",
+    title: "Digital Transformation",
+    shortTitle: "Digital Transformation",
     tagline: "Align technology with mission",
     description:
-      "Develop a clear, actionable digital strategy that aligns your technology initiatives with organizational goals. We build comprehensive roadmaps that enhance your reach, effectiveness, and long-term sustainability.",
+      "A clear, actionable digital strategy that aligns technology with organizational goals. We build comprehensive roadmaps that enhance reach, effectiveness, and long-term sustainability.",
     benefits: [
       "Technology audit & gap analysis",
       "Multi-year digital roadmap",
       "Change management planning",
-      "Stakeholder alignment facilitation",
+      "Stakeholder alignment",
     ],
-    color: "blue",
+    color: "plum",
   },
   {
     id: "data-analytics",
     icon: "chart",
-    title: "Data Analytics",
-    shortTitle: "Data Analytics",
+    title: "Data & Analytics Advisory",
+    shortTitle: "Data & Analytics",
     tagline: "Turn data into decisions",
     description:
-      "Specialized analytics consulting for businesses and nonprofits. We help leaders extract meaningful insights from their data to drive smarter decision-making, demonstrate impact, and achieve sustainable organizational change.",
+      "Specialized analytics consulting that helps leaders extract meaningful insights, demonstrate impact, and drive sustainable change — without enterprise overhead.",
     benefits: [
-      "Data infrastructure assessment",
+      "Data infrastructure review",
       "KPI framework design",
       "Dashboard & reporting build-out",
       "Predictive analytics implementation",
     ],
-    color: "cyan",
+    color: "lavender",
   },
   {
-    id: "ai-revenue",
-    icon: "brain",
-    title: "AI Revenue Intelligence",
-    shortTitle: "AI Revenue",
+    id: "governance-risk",
+    icon: "shield",
+    title: "Governance & Risk Oversight",
+    shortTitle: "Governance & Risk",
+    tagline: "Confidence at the board level",
+    description:
+      "Strengthen the controls and oversight that protect your organization. We design lightweight governance frameworks that satisfy boards, funders, and regulators without slowing teams down.",
+    benefits: [
+      "Risk framework design",
+      "Board reporting templates",
+      "Technology policy review",
+      "Audit-readiness preparation",
+    ],
+    color: "plumLight",
+  },
+  {
+    id: "sponsorship-revenue",
+    icon: "trending-up",
+    title: "Sponsorship & Revenue Strategy",
+    shortTitle: "Revenue Strategy",
     tagline: "Find growth with precision AI",
     description:
-      "Leverage artificial intelligence to identify sponsorship, funding, and partnership opportunities with greater speed and strategic precision. We implement AI tools that surface high-value opportunities your team would otherwise miss.",
+      "Leverage AI to identify sponsorship, funding, and partnership opportunities with greater speed and precision. We implement tools that surface high-value leads your team would otherwise miss.",
     benefits: [
       "AI opportunity scoring models",
-      "Funding & grant discovery automation",
+      "Funding & grant discovery",
       "Partnership match intelligence",
       "Revenue pipeline optimization",
     ],
-    color: "purple",
+    color: "deepPurple",
   },
   {
-    id: "finance-operations",
-    icon: "building",
-    title: "Finance & Operations",
-    shortTitle: "Finance & Ops",
-    tagline: "Strengthen the foundation",
+    id: "fractional-executive",
+    icon: "briefcase",
+    title: "Fractional Executive Advisory",
+    shortTitle: "Fractional Executive",
+    tagline: "Senior leadership, on demand",
     description:
-      "Balance financial rigor with innovation. We strengthen financial planning, modernize reporting systems, and optimize core operations to improve efficiency, build funder confidence, and free your team to focus on mission.",
+      "Senior digital and finance leadership embedded with your team — strategic guidance, decision-making support, and accountability without the cost of a full-time executive.",
     benefits: [
-      "Financial planning & forecasting",
-      "Operational process optimization",
-      "Reporting modernization",
-      "Cost efficiency analysis",
+      "Fractional CDO / CIO leadership",
+      "Executive coaching & shadowing",
+      "Strategic decision support",
+      "Investor & funder briefings",
     ],
-    color: "green",
+    color: "plum",
+  },
+  {
+    id: "board-workshops",
+    icon: "users",
+    title: "Board & Executive Workshops",
+    shortTitle: "Board Workshops",
+    tagline: "Sharpen executive thinking",
+    description:
+      "Bring your board and leadership team together for high-impact workshops on AI, data strategy, digital risk, and modern governance — calibrated to your context and goals.",
+    benefits: [
+      "Custom workshop design",
+      "Half-day & full-day formats",
+      "Pre-reads & follow-up plans",
+      "Board education materials",
+    ],
+    color: "lavender",
   },
 ];
 
@@ -132,6 +186,13 @@ export const testimonials = [
   },
 ];
 
+export const trustIndicators = [
+  "Enterprise digital transformation leader",
+  "Former senior executive at major Canadian financial institutions",
+  "Board advisor & nonprofit governance specialist",
+  "AI & data strategy practitioner",
+];
+
 export const blogPosts = [
   {
     slug: "strategy-before-tools",
@@ -147,7 +208,7 @@ export const blogPosts = [
     slug: "bringing-expertise-to-business-world",
     title: "Why I'm Bringing My Enterprise Expertise to Growing Businesses",
     excerpt:
-      "After 20+ years leading digital transformation at major institutions, I realized the organizations that needed this expertise most didn't have access to it.",
+      "After 25+ years leading digital transformation at major institutions, I realized the organizations that needed this expertise most didn't have access to it.",
     date: "September 7, 2025",
     readTime: "4 min read",
     category: "Founder's Note",
@@ -158,7 +219,7 @@ export const blogPosts = [
 export const aboutContent = {
   headline: "Where Enterprise Expertise Meets Mission-Driven Impact",
   intro:
-    "I'm Michelle Ghai — a fractional Chief Digital, Data & AI Officer with over 20 years leading digital transformation at some of Canada's largest financial institutions.",
+    "I'm Michelle Ghai — a fractional Chief Digital, Data & AI Officer with 25+ years leading digital transformation at some of Canada's largest financial institutions.",
   bio: [
     "Throughout my career I've managed multi-hundred-million dollar portfolios, led teams of 300+, and delivered transformational programs across complex organizations. I've seen firsthand what separates digital initiatives that succeed from those that stall.",
     "Now I bring that same enterprise-grade rigor to businesses and nonprofits that are ready to grow — but don't need (or can't afford) a full-time CDO. As a fractional officer, you get senior strategic leadership precisely when you need it, at a fraction of the cost.",
@@ -166,6 +227,12 @@ export const aboutContent = {
     "I'm also a CMA, CPA, and MBA, which means I speak the language of finance as fluently as I speak the language of technology — a rare combination that helps me bridge the gap between innovation and accountability.",
   ],
   credentials: ["CMA (Certified Management Accountant)", "CPA (Chartered Professional Accountant)", "MBA", "SAFe (Scaled Agile Framework)"],
+  metrics: [
+    { label: "Years of Experience", value: "25+" },
+    { label: "Spend Managed", value: "$300MM+" },
+    { label: "Team Members Led", value: "300+" },
+    { label: "Benefits Generated", value: "$500MM+" },
+  ],
   personal:
     "Outside of work, I'm a wife, mother, basketball parent, and dog lover who believes that ambition and balance aren't opposites — they're partners.",
   callout: {
